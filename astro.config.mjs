@@ -10,5 +10,12 @@ export default defineConfig({
   compressHTML: true,
   integrations: [mdx(), icon(),react(), tailwind({
     applyBaseStyles: false,
-  }), compress()],
+  }), 
+  // compress()
+  ],
+  vite: {
+    css: {
+      minify: false, // Disable CSS minification
+    },
+  },
 })
