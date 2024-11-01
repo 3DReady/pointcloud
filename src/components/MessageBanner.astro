@@ -1,0 +1,56 @@
+---
+// MessageBanner.astro
+const message = "Forget the hassle of managing multiple photos, and experience the power of 3D visualization with just a few clicks.";
+---
+
+<div class="message-banner">
+  <p>{message}</p>
+</div>
+
+<style>
+  .message-banner {
+    padding: 2rem;
+    background: linear-gradient(135deg, #ff8a00, #e52e71);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 2rem auto;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: bold;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .message-banner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .message-banner::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0.6;
+    animation: pulse 6s infinite alternate;
+    transform: rotate(45deg);
+  }
+
+  .message-banner p {
+    margin: 0;
+  }
+
+  @keyframes pulse {
+    from { transform: scale(1) rotate(45deg); }
+    to { transform: scale(1.2) rotate(45deg); }
+  }
+</style>
