@@ -45,7 +45,7 @@ function PointCloudRenderer({ glbPath, title, description }) {
               <ambientLight intensity={0.5} />
               <pointLight position={[10, 10, 10]} />
               <primitive object={scene} />
-              <OrbitControls enableZoom={true} />
+              <OrbitControls enableZoom={true} enablePan={false}/>
             </Suspense>
           </Canvas>
         </div>
