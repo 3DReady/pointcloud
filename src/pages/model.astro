@@ -1,0 +1,14 @@
+---
+ const params = new URLSearchParams(Astro.request.url.split('?')[1]); // Parse query parameters directly
+ const fileName = params.get('file_name') || 'No file name specified'; // Get the file_name parameter
+---
+<h1> hello </h1>
+<h1>File Name: {fileName}</h1>
+<h1>The current request URL is: {Astro.request.url}</h1>
+ <h1>The current URL is: {Astro.url}</h1>
+<h1>The current URL pathname is: {Astro.url.pathname}</h1>
+<h1>The current URL origin is: {Astro.url.origin}</h1>
+
+<!-- const url = new URL(window.location.href);
+const fileName = url.searchParams.get("file_name");
+console.log("The file_name parameter is:", fileName); -->

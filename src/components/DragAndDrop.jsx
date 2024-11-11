@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import PointCloudRenderer from './PointCloudRenderer'; // Import PointCloudRenderer component
-
+import MainPointCloudRenderer from './MainPointCloud';
 
 const DragAndDrop = () => {
   const [photos, setPhotos] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [message, setMessage] = useState(null);
   const [glbPath, setGlbPath] = useState(null);
+  const [filename, setFilename] = useState(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     const newFiles = acceptedFiles.map((file) =>
@@ -32,11 +33,21 @@ const DragAndDrop = () => {
       });
 
       if (response.ok) {
-        // Get the GLB file blob from the response
-        const blob = await response.blob();
-        const url = URL.createObjectURL(blob);
-        setGlbPath(url); // Set the GLB path for PointCloudRenderer
-      } else {
+        const data = await response.json();
+        const filename = data.filename;
+        console.log("Filename from response:", filename); // Verify filename is received
+        setFilename(filename); // Store the filename for later use
+
+        // Step 2: Fetch the actual GLB file using the filename
+        const fileResponse = await fetch(`https://api.pointcloud.3-dready.com:8001/download-glb/${filename}`);
+        if (fileResponse.ok) {
+          const blob = await fileResponse.blob();
+          const url = URL.createObjectURL(blob);
+          setGlbPath(url); // Set the GLB path for rendering or downloading
+        } else {
+          setMessage("Failed to download GLB file");
+        }
+      }  else {
         setMessage('Failed to upload photos');
       }
     } catch (error) {
@@ -136,7 +147,11 @@ const DragAndDrop = () => {
       {/* Render the PointCloudRenderer when glbPath is available */}
       {glbPath && (
         <div style={{ marginTop: '20px' }}>
-          <PointCloudRenderer glbPath={glbPath} title="3D Model" description="Rendered point cloud model." />
+          <MainPointCloudRenderer
+            glbPath={glbPath}
+            filename={filename}
+            title="3D Model"
+            description="Rendered point cloud model." />
         </div>
       )}
 
