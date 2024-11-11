@@ -1,0 +1,10 @@
+---
+import ModelViewerPage from '../../components/ModelViewerPage'; // Adjust path if necessary
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+// Get the dynamic modelId from Astro.params
+const { modelId } = Astro.params;
+---
+<DefaultLayout title="shared">
+<!-- Render ModelViewerPage with client-side loading -->
+<ModelViewerPage modelId={modelId} client:load />
+</DefaultLayout>

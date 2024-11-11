@@ -4,46 +4,53 @@ import Hero from '../components/Hero.astro'
 import Feature from '../components/Feature.astro'
 import ContentMedia from '../components/ContentMedia.astro'
 import PointCloudRenderer from '../components/PointCloudRenderer.jsx';
+import DragAndDrop from '../components/DragAndDrop.jsx';
+import Textstyle from '../components/textstyle.astro';
 ---
 
-<DefaultLayout title="Home">
+<DefaultLayout title="PointCloud">
   <Hero />
+  <!-- Add the Drag and Drop Component Section Here -->
+  <div id="upload" class="container"></div>
+    <Textstyle title="Upload Your Images"/>
+  </div>
+  <DragAndDrop client:only="react" />
   <section class="my-64">
     <div id ="features" class="container">
-      <h2 class="mb-16 text-6xl">Examples</h2>
+      <Textstyle title="Examples"/>
       <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
         <PointCloudRenderer 
-        glbPath="http://localhost:4321/models/scene1.glb"
+        glbPath="/models/scene1.glb"
         title="Sample Point Cloud" 
         description="This is a point cloud rendered from a GLB file."
         client:only="react" 
       />
       <PointCloudRenderer 
-      glbPath="http://localhost:4321/models/scene2.glb"
+      glbPath="/models/scene2.glb"
       title="Sample Point Cloud" 
       description="This is a point cloud rendered from a GLB file."
       client:only="react" 
     />
     <PointCloudRenderer 
-    glbPath="http://localhost:4321/models/scene3.glb"
+    glbPath="/models/scene3.glb"
     title="Sample Point Cloud" 
     description="This is a point cloud rendered from a GLB file."
     client:only="react" 
   />
     <PointCloudRenderer 
-    glbPath="http://localhost:4321/models/scene4.glb"
+    glbPath="/models/scene4.glb"
     title="Sample Point Cloud" 
     description="This is a point cloud rendered from a GLB file."
     client:only="react" 
   />
     <PointCloudRenderer 
-    glbPath="http://localhost:4321/models/scene5.glb"
+    glbPath="/models/scene5.glb"
     title="Sample Point Cloud" 
     description="This is a point cloud rendered from a GLB file."
     client:only="react" 
     />
     <PointCloudRenderer 
-    glbPath="http://localhost:4321/models/scene6.glb"
+    glbPath="/models/scene6.glb"
     title="Sample Point Cloud" 
     description="This is a point cloud rendered from a GLB file."
     client:only="react" 
@@ -51,16 +58,16 @@ import PointCloudRenderer from '../components/PointCloudRenderer.jsx';
       </div>
     </div>
   </section>
-  <ContentMedia imgSrc="/accessible-components.webp">
+  {/* <ContentMedia imgSrc="/accessible-components.webp">
     <h2>Compact 3D Models</h2>
     <p class="text-2xl">
-      Tired of juggling large photo files? Our app turns your room photos into a lightweight 3D point cloud, making it easy to share and store. Get a full 3D view of your space without the bulk — it’s fast, efficient, and perfect for seamless sharing with clients or friends. Simplify your workflow and experience your space in 3D today!
+      Get a full 3D view of your space without the bulk — it’s fast, efficient, and perfect for seamless sharing with clients or friends. Simplify your workflow and experience your space in 3D today!
     </p>
   </ContentMedia>
   <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={true}>
-    <h2>Experience Your Space in a New Dimension"</h2>
+    <h2>Experience Your Space in a New Dimension</h2>
     <p class="text-2xl">
-      With the 3D point cloud, you don’t just look at a series of images — you get a fully interactive view of the room. It’s a smarter, more efficient way to share room designs or floor plans. Forget the hassle of managing multiple photos, and experience the power of 3D visualization with just a few clicks.
+      With the 3D point cloud, you don’t just look at a series of images — you get a fully interactive view of the room. It’s a smarter, more efficient way to share room designs or floor plans.
     </p>
-  </ContentMedia>
+  </ContentMedia>*/}
 </DefaultLayout>

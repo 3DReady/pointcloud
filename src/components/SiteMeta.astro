@@ -3,7 +3,7 @@ import { ViewTransitions } from 'astro:transitions'
 
 const { title, description, url, image, author } = Astro.props
 
-let subtitle = 'Accessible Astro Starter'
+let subtitle = ''
 ---
 
 <!-- general meta -->
@@ -21,6 +21,6 @@ let subtitle = 'Accessible Astro Starter'
 <!-- twitter card -->
 
 <!-- page title -->
-<title>{title} - {subtitle}</title>
+<title>{title} {subtitle}</title>
 
 <ViewTransitions />
